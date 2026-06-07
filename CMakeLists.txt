@@ -12,6 +12,7 @@ add_executable(particleLife
   src/headers/vector2.h
   src/headers/settings.h
   src/headers/drawUtils.h
+  src/headers/physics.h
 )
 
 find_package(SDL3 REQUIRED)

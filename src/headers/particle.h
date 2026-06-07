@@ -11,7 +11,9 @@
 class Particle {
 public:
   vector2 pos;
+  vector2 force;
   vector2 speed;
+
   uint_fast16_t weight;
   uint_fast8_t typeNum = 0;
   static std::vector<SDL_Color> colors;

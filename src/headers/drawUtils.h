@@ -8,7 +8,7 @@ public:
 
 inline void DrawUtils::drawCircle(SDL_Renderer *rn, vector2 *pos,
                                   SDL_Color *color) {
-  SDL_FRect rec = {pos->x, pos->y, 10, 10};
+  SDL_FRect rec = {pos->x, pos->y, 5, 5};
   SDL_SetRenderDrawColor(rn, color->r, color->g, color->b, color->a);
   SDL_RenderFillRect(rn, &rec);
 }

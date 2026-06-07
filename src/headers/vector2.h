@@ -12,6 +12,13 @@ public:
 
   void normalize();
   void print();
+
+  void operator+=(const vector2 &vc) {
+    x += vc.x;
+    y += vc.y;
+  }
+
+  vector2 operator*(const float &f) { return {x * f, y * f}; }
 };
 
 /// Changes current values

@@ -8,9 +8,16 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 file(GLOB SOURCE_FILES "src/*.cpp" "src/headers/*.h")
 add_executable(particleLife ${SOURCE_FILES})
 
+find_package(SDL3 REQUIRED)
+
 target_include_directories(
   particleLife
   PRIVATE src/headers
+)
+
+target_link_libraries(
+  particleLife
+  SDL3::SDL3
 )
 
 if(NOT CMAKE_BUILD_TYPE)

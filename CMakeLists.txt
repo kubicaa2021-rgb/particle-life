@@ -5,8 +5,14 @@ project(particleLife)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-file(GLOB SOURCE_FILES "src/*.cpp" "src/headers/*.h")
-add_executable(particleLife ${SOURCE_FILES})
+add_executable(particleLife 
+  src/main.cpp
+  src/headers/particle.h
+  src/headers/windowHelper.h
+  src/headers/vector2.h
+  src/headers/settings.h
+  src/headers/drawUtils.h
+)
 
 find_package(SDL3 REQUIRED)
 

@@ -6,14 +6,14 @@
 #include <SDL3/SDL_render.h>
 #include <settings.h>
 
-class windowHelper {
+class WindowHelper {
 public:
   SDL_Window *window;
   SDL_Renderer *renderer;
   int setup();
 };
 
-inline int windowHelper::setup() {
+inline int WindowHelper::setup() {
   SDL_SetHint(SDL_HINT_VIDEO_DRIVER, "wayland");
   window =
       SDL_CreateWindow("Particle Life", Settings::WIDTH, Settings::HEIGHT, 0);

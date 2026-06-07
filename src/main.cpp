@@ -1,11 +1,15 @@
-#include <SDL3/SDL_events.h>
-#include <SDL3/SDL_init.h>
-#include <SDL3/SDL_render.h>
-#include <SDL3/SDL_video.h>
+#include "particle.h"
+#include "settings.h"
+#include <SDL3/SDL_pixels.h>
 #include <windowHelper.h>
 int main(int argc, char *argv[]) {
-  windowHelper win;
-  win.setup();
+  WindowHelper win;
+  if (win.setup() == 1) {
+    return 1;
+  }
+
+  Particle p = Particle();
+  p.pos = {100, 100};
 
   bool done = false;
   SDL_Event event;
@@ -15,9 +19,12 @@ int main(int argc, char *argv[]) {
         done = true;
       }
     }
-
-    SDL_SetRenderDrawColor(win.renderer, 0, 0, 0, 255);
+    // Draw background
+    SDL_SetRenderDrawColor(win.renderer, Settings::bg.r, Settings::bg.g,
+                           Settings::bg.b, Settings::bg.a);
     SDL_RenderClear(win.renderer);
+
+    p.draw(win.renderer);
 
     SDL_RenderPresent(win.renderer);
   }

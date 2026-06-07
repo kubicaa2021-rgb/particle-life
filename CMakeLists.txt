@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.16)
-project(todoApp)
+project(particleLife)
 
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 file(GLOB SOURCE_FILES "src/*.cpp" "src/headers/*.h")
-add_executable(todoApp ${SOURCE_FILES})
+add_executable(particleLife ${SOURCE_FILES})
 
 target_include_directories(
-  todoApp
+  particleLife
   PRIVATE src/headers
 )
 
@@ -20,15 +20,15 @@ if(NOT CMAKE_BUILD_TYPE)
   set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS
   "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
-message(STATUS "todoApp Build Type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "particleLife Build Type: ${CMAKE_BUILD_TYPE}")
 
-# Set the version for todoApp
-set(todoApp_Version_Major 0)
-set(todoApp_Version_Minor 1)
-set(todoApp_Version_Patch 0)
-set(todoApp_Version_Status "-dev")
+# Set the version for particleLife
+set(particleLife_Version_Major 0)
+set(particleLife_Version_Minor 1)
+set(particleLife_Version_Patch 0)
+set(particleLife_Version_Status "-dev")
 set(PROJECT_VERSION
-  "${todoApp_Version_Major}.${todoApp_Version_Minor}.${todoApp_Version_Patch}${todoApp_Version_Status}"
+  "${particleLife_Version_Major}.${particleLife_Version_Minor}.${particleLife_Version_Patch}${particleLife_Version_Status}"
 )
 message(STATUS "${PROJECT_NAME} version: ${PROJECT_VERSION}")
 

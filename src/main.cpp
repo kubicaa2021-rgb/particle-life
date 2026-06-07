@@ -1,11 +1,7 @@
 #include "particle.h"
 #include "physics.h"
 #include "settings.h"
-#include <SDL3/SDL_pixels.h>
-#include <SDL3/SDL_stdinc.h>
-#include <SDL3/SDL_timer.h>
 #include <cstdint>
-#include <vector>
 #include <windowHelper.h>
 int main(int argc, char *argv[]) {
   WindowHelper win;
@@ -14,14 +10,14 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  std::vector<Particle> particles(2, Particle());
   Particle test;
-  test.weight = 100;
+  test.weight = 500000000000000;
   test.pos = {100, 100};
-  test.force = {100, 0};
+  test.speed = {0, 30};
 
-  particles[1].weight = 500;
-  particles[1].pos = {500, 500};
+  Particle test2;
+  test2.weight = 500000000000000;
+  test2.pos = {125, 125};
 
   // Time setup - FPS deltaTime
   const uint_fast32_t TARGET_FRAME_TIME = 1000 / 60;
@@ -36,7 +32,7 @@ int main(int argc, char *argv[]) {
 
     // Delta time
     uint_fast64_t currentTime = SDL_GetPerformanceCounter();
-    Settings::deltaTime = (float)(currentTime - lastTime) / (float)frequency;
+    Variables::deltaTime = ((float)(currentTime - lastTime) / (float)frequency);
     lastTime = currentTime;
 
     while (SDL_PollEvent(&event)) {
@@ -45,13 +41,20 @@ int main(int argc, char *argv[]) {
       }
     }
     // Draw background
-    SDL_SetRenderDrawColor(win.renderer, Settings::bg.r, Settings::bg.g,
-                           Settings::bg.b, Settings::bg.a);
+    SDL_SetRenderDrawColor(win.renderer, Variables::bg.r, Variables::bg.g,
+                           Variables::bg.b, Variables::bg.a);
     SDL_RenderClear(win.renderer);
 
+    PhysicsHandler::updateForces(&test, &test2);
+
     PhysicsHandler::applyForce(&test);
+    PhysicsHandler::applyForce(&test2);
+
     PhysicsHandler::applySpeed(&test);
+    PhysicsHandler::applySpeed(&test2);
+
     test.draw(win.renderer);
+    test2.draw(win.renderer);
 
     SDL_RenderPresent(win.renderer);
 

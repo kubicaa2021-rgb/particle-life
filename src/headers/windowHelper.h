@@ -16,7 +16,7 @@ public:
 inline int WindowHelper::setup() {
   SDL_SetHint(SDL_HINT_VIDEO_DRIVER, "wayland");
   window =
-      SDL_CreateWindow("Particle Life", Settings::WIDTH, Settings::HEIGHT, 0);
+      SDL_CreateWindow("Particle Life", Variables::WIDTH, Variables::HEIGHT, 0);
 
   if (!window) {
     SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create window: %s",
